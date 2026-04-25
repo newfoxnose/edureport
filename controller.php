@@ -265,7 +265,8 @@ function report_3112($studentsData, $phase)
             $data['line'][3][$i][0] = array("count" => "-");
         }
     }
-    for ($i = 0; $i < count($grade_arr) + 2; $i++) {
+    // 占位行也要补齐“预计毕业生数”列，避免固定索引导出时越界
+    for ($i = 0; $i < count($grade_arr) + 3; $i++) {
         $data['line'][3][$temp_x + 4 + $i][0] = array("count" => "");
     }
 
@@ -313,7 +314,8 @@ function report_3112($studentsData, $phase)
                 $data['line'][$j][$i][0] = array("count" => "-");
             }
         }
-        for ($i = 0; $i < count($grade_arr) + 2; $i++) {
+        // 占位行也要补齐“预计毕业生数”列，避免固定索引导出时越界
+        for ($i = 0; $i < count($grade_arr) + 3; $i++) {
             $data['line'][$j][$temp_x + 4 + $i][0] = array("count" => "");
         }
     }

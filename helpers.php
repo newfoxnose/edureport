@@ -98,7 +98,8 @@ function trim_identity_number($identity_number)
 //去除字符串中的空格、制表符、换行符、回车符
 function trim_str($str)
 {
-    return preg_replace('/[\s\t\n\r]+/', '', $str);
+    // 兼容 PHP 8.1+：允许传入 null，避免 preg_replace 的 Deprecated 警告
+    return preg_replace('/[\s\t\n\r]+/', '', (string)$str);
 }
 
 
