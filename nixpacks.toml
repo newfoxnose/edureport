@@ -1,0 +1,15 @@
+# Nixpacks：在 Coolify 中将「构建包」选为 Nixpacks 时自动读取本文件。
+# 文档：https://nixpacks.com/docs/configuration/file
+# PHP 提供方：https://nixpacks.com/docs/providers/php
+
+[variables]
+# 将未匹配到静态文件的请求交给 index.php（与根目录 index.php + ?action= 路由配合）
+NIXPACKS_PHP_FALLBACK_PATH = "/index.php"
+
+[phases.install]
+# 生产镜像内安装 Composer 依赖（需提交 composer.json；vendor/ 勿提交）
+cmds = [
+    "composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist"
+]
+
+# 未写 [start]：沿用 Nixpacks PHP 提供方的默认 Nginx 启动流程（监听 Coolify 注入的 PORT）。

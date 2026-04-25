@@ -1,0 +1,27 @@
+{
+    "name": "zn/edureport-www",
+    "description": "年报填报系统依赖声明（供 Nixpacks/Coolify 构建时 composer install，不改动业务代码）",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "phpoffice/phpspreadsheet": "^1.29.0",
+        "ext-ctype": "*",
+        "ext-dom": "*",
+        "ext-gd": "*",
+        "ext-iconv": "*",
+        "ext-fileinfo": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-simplexml": "*",
+        "ext-xml": "*",
+        "ext-xmlreader": "*",
+        "ext-xmlwriter": "*",
+        "ext-zip": "*",
+        "ext-zlib": "*"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
