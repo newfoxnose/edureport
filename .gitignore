@@ -1,0 +1,18 @@
+# Composer
+/vendor/
+composer.lock
+
+# 数据文件（保留目录但不提交数据）
+/data/*.json
+!/data/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
