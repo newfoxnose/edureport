@@ -12,4 +12,10 @@ cmds = [
     "composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist"
 ]
 
+# 部分运行环境仍引用 /var/log/nginx；构建时创建目录，避免 Nginx 因缺目录反复崩溃
+[phases.build]
+cmds = [
+    "mkdir -p /var/log/nginx /var/cache/nginx/client_temp /var/lib/nginx/tmp /var/run/nginx || true"
+]
+
 # 未写 [start]：沿用 Nixpacks PHP 提供方的默认 Nginx 启动流程（监听 Coolify 注入的 PORT）。
