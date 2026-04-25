@@ -558,7 +558,8 @@ function import_teachers()
             
             // 从第2行开始读取数据（第1行是标题）
             for ($row = 2; $row <= $highestRow; $row++) {
-                $identity_number = trim($sheet->getCell('C' . $row)->getValue()); // 身份证号码
+                // 兼容 PHP 8.1+：单元格为空时 getValue() 可能返回 null，直接 trim(null) 会触发 Deprecated
+                $identity_number = trim((string)$sheet->getCell('C' . $row)->getValue()); // 身份证号码
                 // 跳过空行
                 if (empty($identity_number)) {
                     continue;
@@ -656,6 +657,16 @@ function report_4149($teachersData)
         
         $data['line'][3][] = array(array("count" => "-"));
     }
+
+    // 补齐“校外教师、银龄教师”两列默认值，避免后续按固定列索引取值时出现越界告警
+    $data['line'][0][] = array(array("count" => 0));
+    $data['line'][0][] = array(array("count" => 0));
+    $data['line'][1][] = array(array("count" => 0));
+    $data['line'][1][] = array(array("count" => 0));
+    $data['line'][2][] = array(array("count" => 0));
+    $data['line'][2][] = array(array("count" => 0));
+    $data['line'][3][] = array(array("count" => "-"));
+    $data['line'][3][] = array(array("count" => "-"));
     
     for ($i = 0; $i < count($data['line']); $i++) {
         $tmp = 0;
